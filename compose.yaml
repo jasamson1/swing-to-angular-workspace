@@ -1,0 +1,18 @@
+services:
+  migrator-swing2angular-poc:
+    image: migrator-swing2angular-poc:0.0.1
+    build:
+      context: .
+      additional_contexts:
+        genrevive: ${LOCAL_GENREVIVE_PATH}
+    container_name: migrator-swing2angular-poc
+    env_file: .env
+    volumes:
+      - ${LOCAL_ORIGIN_PROJECT_PATH}:${ORIGIN_PROJECT_PATH}
+      - ${LOCAL_TARGET_PROJECT_PATH}:${TARGET_PROJECT_PATH}
+      - ${LOCAL_ANGULAR_PROJECT_PATH}:${ANGULAR_PROJECT_PATH}
+    networks:
+      - migrator-swing2angular-poc-network
+networks:
+  migrator-swing2angular-poc-network:
+

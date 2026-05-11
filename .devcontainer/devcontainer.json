@@ -1,0 +1,56 @@
+{
+  "name": "GenRevive Migrator - Swing to Angular",
+  "image": "mcr.microsoft.com/devcontainers/python:3.12-bookworm",
+
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "22"
+    },
+    "ghcr.io/devcontainers/features/java:1": {
+      "version": "21",
+      "jdkDistro": "tem"
+    },
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+  },
+
+  // Install Poetry, Angular CLI v16, OpenAPI Generator CLI, clone genrevive sibling repo, then install Python deps
+  "postCreateCommand": "bash .devcontainer/setup.sh",
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "angular.ng-template",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "redhat.vscode-yaml",
+        "github.copilot",
+        "github.copilot-chat"
+      ],
+      "settings": {
+        "python.defaultInterpreterPath": "/workspaces/genrevive-migrator-swing2angular/venv/bin/python",
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "[python]": {
+          "editor.defaultFormatter": "ms-python.python"
+        }
+      }
+    }
+  },
+
+  // Mount the genrevive sibling repo into the container if available locally.
+  // When running in GitHub Codespaces the postCreateCommand clones it automatically.
+  "mounts": [],
+
+  "remoteEnv": {
+    // Point Poetry to use the in-project venv so the interpreter path above works
+    "POETRY_VIRTUALENVS_IN_PROJECT": "true"
+  },
+
+  "forwardPorts": [4200, 8080],
+  "portsAttributes": {
+    "4200": { "label": "Angular Dev Server" },
+    "8080": { "label": "Mock API / httpbin" }
+  }
+}

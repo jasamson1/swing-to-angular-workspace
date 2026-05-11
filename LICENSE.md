@@ -1,0 +1,1 @@
+The target license attached to this repository is not defined yet. This content must not be reused partially or entirely without the explicit consent of the repository owner, and its usage condition outside of Capgemini (Opensource or Client side) must be checked with your legal team.
