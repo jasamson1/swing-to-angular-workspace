@@ -53,8 +53,8 @@ sed -i 's|^genrevive = .*|genrevive = { path = "../genrevive/genrevive-1.14.0.ta
 
 # ── 6. Create logs directory and logfile ─────────────────────────────────────
 echo "[6/7] Creating logs/logfile.log..."
-mkdir -p "${MIGRATOR_DIR}/logs"
-touch "${MIGRATOR_DIR}/logs/logfile.log"
+mkdir -p "${MIGRATOR_DIR}/migrator/logs"
+touch "${MIGRATOR_DIR}/migrator/logs/logfile.log"
 
 # ── 7. Create target-project directory ───────────────────────────────────────
 echo "[7/7] Creating target-project directory..."
@@ -62,7 +62,7 @@ mkdir -p "${WORKSPACE_ROOT}/target-project"
 
 # ── Install Python dependencies ───────────────────────────────────────────────
 echo "Installing Python dependencies via Poetry..."
-cd "${MIGRATOR_DIR}"
+cd "${MIGRATOR_DIR}/migrator"
 poetry lock --no-update 2>/dev/null || true
 poetry install
 
