@@ -48,7 +48,7 @@ fi
 
 # ── 5. Patch pyproject.toml genrevive reference ─────────────────────────────
 echo "[5/7] Patching pyproject.toml genrevive path..."
-sed -i 's|^genrevive = .*|genrevive = { path = "../genrevive/genrevive-1.14.0.tar.gz", develop = false }|' "${MIGRATOR_DIR}/pyproject.toml"
+sed -i 's|^genrevive = .*|genrevive = { path = "../genrevive/genrevive-1.14.0.tar.gz", develop = false }|' "${MIGRATOR_DIR}/migrator/pyproject.toml"
 
 # ── 6. Create logs directory and logfile ─────────────────────────────────────
 echo "[6/7] Creating logs/logfile.log..."
