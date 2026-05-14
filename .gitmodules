@@ -1,0 +1,3 @@
+[submodule "input/websocket_swing"]
+	path = input/websocket_swing
+	url = https://github.com/Sultanow/websocket_swing.git

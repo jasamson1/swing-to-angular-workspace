@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "genrevive-migrator-swing2angular-poc"
+version = "0.1.0"
+authors = ["Vanio Begic, Kristina Peteln"]
+description = "GenRevive Migrator - Java Swing to Angular PoC"
+readme = "README.md"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = ">=3.10,<=3.13.7"
+python-dotenv = "^1.0.1"
+genrevive = { path = "../genrevive/v1.14.0.tar.gz", develop = false }
+
+# Use this when you can provide creds for cap nexus
+#[[tool.poetry.source]]
+#name = "pypi-nexus"
+#url = "https://devon.s2-eu.capgemini.com/nexus3/repository/pypi/simple/"
+#priority = "primary"
+
+#[[tool.poetry.source]]
+#name = "PyPI"
+#priority = "supplemental"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
