@@ -12,17 +12,17 @@ echo "========================================"
 echo " GenRevive Migrator – Dev Container Setup"
 echo "========================================"
 
-# ── 1. Angular CLI v16 ────────────────────────────────────────────────────────
-echo "[1/5] Installing Angular CLI v16..."
-npm install -g @angular/cli@16.0.0
+# ── 1. Angular CLI v17 ────────────────────────────────────────────────────────
+echo "[1/5] Installing Angular CLI v17..."
+npm install -g @angular/cli@17.0.0
 
 # ── 2. OpenAPI Generator CLI ──────────────────────────────────────────────────
 echo "[2/5] Installing OpenAPI Generator CLI..."
 npm install -g @openapitools/openapi-generator-cli
 
 # ── 3. Poetry ─────────────────────────────────────────────────────────────────
-echo "[3/5] Installing Poetry 1.8.3..."
-pip install --quiet poetry==1.8.3
+echo "[3/5] Installing Poetry via pipx..."
+pipx install poetry
 # Ensure Poetry creates the venv inside the project folder
 poetry config virtualenvs.in-project true
 
@@ -46,8 +46,21 @@ else
   echo "  genrevive directory already exists, skipping clone."
 fi
 
-# ── 5. Install Python dependencies ───────────────────────────────────────────
-echo "[5/5] Installing Python dependencies via Poetry..."
+# ── 5. Patch pyproject.toml genrevive reference ─────────────────────────────
+echo "[5/7] Patching pyproject.toml genrevive path..."
+sed -i 's|^genrevive = .*|genrevive = { path = "../genrevive/genrevive-1.14.0.tar.gz", develop = false }|' "${MIGRATOR_DIR}/pyproject.toml"
+
+# ── 6. Create logs directory and logfile ─────────────────────────────────────
+echo "[6/7] Creating logs/logfile.log..."
+mkdir -p "${MIGRATOR_DIR}/logs"
+touch "${MIGRATOR_DIR}/logs/logfile.log"
+
+# ── 7. Create target-project directory ───────────────────────────────────────
+echo "[7/7] Creating target-project directory..."
+mkdir -p "${WORKSPACE_ROOT}/target-project"
+
+# ── Install Python dependencies ───────────────────────────────────────────────
+echo "Installing Python dependencies via Poetry..."
 cd "${MIGRATOR_DIR}"
 poetry lock --no-update 2>/dev/null || true
 poetry install
