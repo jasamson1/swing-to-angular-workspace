@@ -5,7 +5,8 @@
 set -euo pipefail
 
 WORKSPACE_ROOT="/workspaces"
-MIGRATOR_DIR="${WORKSPACE_ROOT}/genrevive-migrator-swing2angular"
+# Resolve the repo root dynamically from the script location (.devcontainer/../)
+MIGRATOR_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 GENREVIVE_DIR="${WORKSPACE_ROOT}/genrevive"
 
 echo "========================================"
